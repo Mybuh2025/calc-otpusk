@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+ <html lang="ru">
+ <head>
+  <meta charset="UTF-8">
+  <title>Калькулятор Отпускных и Компенсации (Прототип)</title>
+  <style>
+  body { font-family: sans-serif; }
+  .container { max-width: 800px; margin: 20px auto; padding: 15px; border: 1px solid #ccc; }
+  label { display: block; margin-top: 10px; }
+  input, select { width: 95%; padding: 8px; margin-top: 5px; }
+  button { padding: 10px 15px; margin-top: 15px; cursor: pointer; }
+  #results { margin-top: 20px; padding: 10px; background-color: #f0f0f0; border: 1px solid #ddd; }
+  .income-month { display: flex; align-items: center; margin-bottom: 5px; }
+  .income-month label { flex-basis: 100px; margin-right: 10px; }
+  .income-month input { flex-grow: 1; }
+  </style>
+ </head>
+ <body>
+  <div class="container">
+  <h1>Калькулятор Отпускных и Компенсации (Прототип)</h1>
+
+  <form id="calculatorForm">
+  <label for="calculationType">Тип расчета:</label>
+  <select id="calculationType" name="calculationType">
+  <option value="vacation">Отпускные</option>
+  <option value="compensation">Компенсация при увольнении</option>
+  </select>
+
+  <label for="workSchedule">График работы:</label>
+  <select id="workSchedule" name="workSchedule">
+  <option value="5day">5-дневка</option>
+  <option value="6day">6-дневка</option>
+  </select>
+
+  <div id="vacationFields">
+  <label for="vacationStartDate">Дата начала отпуска:</label>
+  <input type="date" id="vacationStartDate" name="vacationStartDate">
+  <label for="vacationEndDate">Дата окончания отпуска:</label>
+  <input type="date" id="vacationEndDate" name="vacationEndDate">
+  </div>
+
+  <div id="compensationFields" style="display: none;">
+  <label for="terminationDate">Дата увольнения:</label>
+  <input type="date" id="terminationDate" name="terminationDate">
+  <label for="unusedVacationDays">Неиспользовано дней отпуска (календ.):</label>
+  <input type="number" id="unusedVacationDays" name="unusedVacationDays" value="0">
+  </div>
+
+  <label for="employeeHireDate">Дата приема на работу:</label>
+  <input type="date" id="employeeHireDate" name="employeeHireDate">
+
+  <fieldset>
+  <legend>Доходы по месяцам за 12 мес. (или факт. период)</legend>
+  <div id="monthlyIncomeDetails">
+  </div>
+  </fieldset>
+
+  <label for="salaryIncreaseDate">Дата повышения оклада (если было):</label>
+  <input type="date" id="salaryIncreaseDate" name="salaryIncreaseDate">
+  <label for="oldSalary">Старый оклад (до повышения):</label>
+  <input type="number" id="oldSalary" name="oldSalary">
+  <label for="newSalary">Новый оклад (после повышения):</label>
+  <input type="number" id="newSalary" name="newSalary">
+
+  <button type="button" onclick="calculate()">Рассчитать</button>
+  </form>
+
+  <div id="results" style="display: none;">
+  <h2>Результаты расчета:</h2>
+  <pre id="output"></pre>
+  <p><small><strong>Дисклеймер:</strong> Расчеты являются предварительными и основаны на введенных данных и упрощенной модели производственного календаря. Рекомендуется консультация со специалистом.</small></p>
+  </div>
+  </div>
+
+  <script src="calculator.js"></script>
+ </body>
+ </html>
